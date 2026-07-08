@@ -24,7 +24,7 @@ Build a Home Linux Server using Linux Mint in VMware Workstation to learn Linux 
 | CPU | 2 Cores |
 | Storage | 40 GB |
 | Network Adapter | Bridged |
-| IP Configuration | Static IP |
+| IP Configuration | Dynamic (DHCP) |
 
 ---
 
@@ -33,13 +33,12 @@ Build a Home Linux Server using Linux Mint in VMware Workstation to learn Linux 
 1. Download the Linux Mint ISO.
 2. Create a new virtual machine in VMware Workstation.
 3. Allocate CPU, RAM, and storage.
-4. Configure the network adapter to **Bridged Mode**.
+4. Configure the network adapter to Bridged Mode.
 5. Install Linux Mint.
 6. Create a user account.
 7. Update the operating system.
 8. Install OpenSSH Server.
-9. Configure a static IP address.
-10. Restart the virtual machine.
+9. Connect from Windows using PuTTY over the local network.
 
 ---
 
@@ -63,7 +62,7 @@ Check the hostname:
 hostname
 ```
 
-Verify the SSH service:
+Check the SSH service:
 
 ```bash
 systemctl status ssh
@@ -71,6 +70,14 @@ systemctl status ssh
 
 ---
 
+## Notes
+
+- The server receives its IP address automatically using DHCP.
+- SSH access is available only within the local network.
+- No port forwarding, DDNS, VPN, or SSH tunneling has been configured.
+
+---
+
 ## Result
 
-Linux Mint was successfully installed in VMware Workstation using a Bridged network adapter. A static IP address was configured, and the system is ready for remote administration and additional server services.
+Linux Mint was successfully installed in VMware Workstation using a Bridged network. The server can be managed remotely from another computer on the same local network using SSH.
