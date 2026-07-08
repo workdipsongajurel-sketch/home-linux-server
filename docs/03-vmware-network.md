@@ -1,86 +1,69 @@
-# Home Linux Server
+# VMware Bridged Network Configuration
 
-## Project Overview
+## Objective
 
-This project demonstrates how to build a basic Linux home server using a Linux Mint virtual machine.
-
-The server is configured with SSH so that it can be remotely managed from a Windows computer using PuTTY.
-
-This project was created to practice Linux administration, networking, and remote server management.
+Configure VMware Bridged Networking to allow a Windows virtual machine to connect to the Linux Mint host using SSH.
 
 ---
 
-## Lab Environment
+## Environment
 
-### Host Computer
-- Windows 11
-
-### Virtual Machine
-- Linux Mint
-
-### Virtualization Software
-- VMware Workstation / VirtualBox
-
-### Network Configuration
-- Bridged Adapter
-- Dynamic IP (DHCP)
-
----
-
-## Server Services
-
-- OpenSSH Server
-- Remote login from Windows using PuTTY
+- Host Operating System: Linux Mint
+- Virtualization Software: VMware Workstation
+- Guest Operating System: Windows
+- Network Mode: Bridged
+- Remote Access Tool: PuTTY
 
 ---
 
 ## Network Diagram
 
-Windows 11
-(PuTTY SSH Client)
-
-↓
-
-Linux Mint VM
-(OpenSSH Server)
-
-↓
-
-Bridged Network (DHCP)
-
-↓
-
-Home Router
+```text
+                 Internet
+                     │
+               Home Router
+                     │
+          ┌──────────┴──────────┐
+          │                     │
+    Linux Mint Host       Windows Virtual Machine
+     (SSH Server)             (PuTTY Client)
+          │                     │
+          └──── VMware Bridged ─┘
+```
 
 ---
 
-## Skills Learned
+## How It Works
 
-- Installing Linux Mint
-- Configuring a virtual machine
-- Using bridged networking
-- Finding the server IP address
-- Installing OpenSSH Server
-- Connecting with PuTTY
-- Basic Linux terminal commands
-- Remote server management
+- Linux Mint runs the OpenSSH Server.
+- Windows runs PuTTY as the SSH client.
+- Both systems are connected through VMware Bridged Networking.
+- Windows connects to the Linux Mint host using its local IP address.
 
 ---
 
-## Future Improvements
+## Verify the Connection
 
-- Samba File Server
-- Apache Web Server
-- Docker
-- Paperless-ngx
-- DDNS
-- Firewall (UFW)
-- Automatic backups
-- VPN (WireGuard)
+Find the Linux Mint IP address:
+
+```bash
+ip addr
+```
+
+Check the SSH service:
+
+```bash
+sudo systemctl status ssh
+```
+
+From Windows, open PuTTY and connect to:
+
+- Host Name: Linux Mint IP address
+- Port: 22
+- Connection Type: SSH
 
 ---
 
-## Author
+## Result
 
-Dipson Gajurel
-Nepal
+The Windows virtual machine successfully connected to the Linux Mint host using SSH over the local network.
